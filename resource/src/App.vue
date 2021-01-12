@@ -11,12 +11,12 @@
         <button class="bg-success btn btn-new-note" @click="newNote">
           + New Note
         </button>
-        <ListNote :propNotes="notes" :propEditNote="EditNote"/>
+        <ListNote :propEditNote="EditNote"/>
       </div>
     </div>
 
     <div class="right-side">
-         <Form :propSaveNote="saveNote" :propRemoveNote="removeNote" :propUpdateNote="updateNote" :propDataForm="dataForm"/>
+         <Form :propSaveNote="saveNote" :propRemoveNote="removeNote" :propUpdateNote="updateNote"/>
     </div>
 
   </div>
@@ -30,19 +30,6 @@ export default {
   name: 'App',
   data: function () {
      return {
-          dataForm: {},
-          notes: [
-               {   
-                    id: 1,
-                    title: 'Note Kamis 10 Desember 2020',
-                    description: 'sudah memasuki akhir tahun 2020'
-               },
-               {
-                    id: 2,
-                    title: 'Note Kamis 7 Januari 2021',
-                    description: 'Ya ini..'
-               }
-          ]
      }
   },
   components: {
@@ -65,12 +52,6 @@ export default {
             let newNote = { id:newId, 'title':title, 'description':description }
             this.notes.push(newNote);
             this.EditNote(newId);
-       },
-       EditNote(id) {
-          //   console.log('dari App vue '+id);
-          this.dataForm = this.notes.find(note => note.id === id);
-
-          // console.log(this.dataForm);
        },
        updateNote(id, title, description) {
           let noteIndex = this.notes.findIndex(note => note.id === id);
