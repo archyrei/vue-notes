@@ -24,9 +24,6 @@ export default {
         },
         propUpdateNote : {
             type: Function
-        },
-        propRemoveNote: {
-            type: Function
         }
     },
     data: function () {
@@ -47,7 +44,8 @@ export default {
             }
         },
         submitRemove() {
-            this.propRemoveNote(this.id);
+            let data = {id : this.id};
+            this.$root.$emit('emitRemoveNote', data);
             this.reset();
         },
         reset() {
